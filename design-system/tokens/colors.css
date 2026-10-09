@@ -1,0 +1,22 @@
+:root{
+/* Base — paleta da marca */
+--xa-creme:#F7F3EA;--xa-preto:#161412;--xa-rosa:#EE5E95;--xa-amarelo:#F2C230;
+/* Encontro: onde rosa e amarelo se misturam. Uso raro: o "×" do co-branding, destaques de captura */
+--xa-encontro:#F2906A;
+/* Escalas */
+--xa-rosa-100:#FCE3EC;--xa-rosa-200:#F8BFD4;--xa-rosa-400:#F27FAA;--xa-rosa-500:#EE5E95;--xa-rosa-700:#B8346A;
+--xa-amarelo-100:#FCF1CF;--xa-amarelo-200:#F8E09A;--xa-amarelo-400:#F5CF5C;--xa-amarelo-500:#F2C230;--xa-amarelo-700:#A9820F;
+--xa-creme-100:#FBF9F4;--xa-creme-200:#F7F3EA;--xa-creme-300:#EDE6D6;--xa-creme-400:#DCD2BC;
+--xa-preto-900:#161412;--xa-preto-800:#24211E;--xa-preto-700:#3A3632;--xa-preto-500:#6B655E;--xa-preto-300:#A39C93;
+/* Semânticos */
+--surface-page:var(--xa-creme);--surface-raised:var(--xa-creme-100);--surface-sunken:var(--xa-creme-300);
+--surface-ink:var(--xa-preto);--surface-ink-raised:var(--xa-preto-800);
+--player-a:var(--xa-rosa);--player-b:var(--xa-amarelo);--player-a-soft:var(--xa-rosa-200);--player-b-soft:var(--xa-amarelo-200);
+--text-1:var(--xa-preto);--text-2:var(--xa-preto-700);--text-3:var(--xa-preto-500);
+--text-on-ink:var(--xa-creme);--text-on-ink-2:var(--xa-preto-300);
+--text-on-rosa:var(--xa-preto);--text-on-amarelo:var(--xa-preto);
+--border-ink:var(--xa-preto);--border-soft:var(--xa-creme-400);
+--accent-meet:var(--xa-encontro);
+--focus-ring:var(--xa-rosa);
+--link:var(--xa-preto);--link-hover:var(--xa-rosa-700);
+}

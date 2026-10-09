@@ -1,0 +1,22 @@
+name: Manter o banco acordado
+
+# O Supabase grátis pausa o projeto depois de 7 dias sem uso, e as noites são semanais.
+# Uma leitura por dia evita a pausa.
+on:
+  schedule:
+    - cron: '17 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lê o retrato público
+        run: |
+          set -a; . ./.env; set +a
+          curl -fsS "$VITE_SUPABASE_URL/rest/v1/publico?select=atualizado_em" \
+            -H "apikey: $VITE_SUPABASE_PUBLISHABLE_KEY" > /dev/null

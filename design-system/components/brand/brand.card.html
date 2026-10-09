@@ -1,0 +1,20 @@
+<!-- @dsCard group="Components" viewport="700x440" name="Brand: LogoSymbol, Wordmark, CoBrand, Checker" subtitle="Assinatura tipográfica, co-branding e quadriculado" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-1)}#r{padding:24px;display:flex;flex-direction:column;gap:18px}.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.lbl{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);width:70px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="r"></div>
+<script type="text/babel">
+const { Button, Tag, LogoSymbol, Wordmark, CoBrand, Checker, PieceGlyph, Ficha, MenuItem } = window.XadrezAlcoLicoDesignSystem_ee9af0;
+function Card(){return (<>
+<div className="row" style={{gap:24,alignItems:'flex-end'}}><LogoSymbol size={110}/><LogoSymbol variant="brinde" size={110}/><LogoSymbol variant="tabuleiro" size={80}/><div style={{background:'var(--xa-preto)',padding:12,display:'flex',gap:12,alignItems:'flex-end'}}><LogoSymbol tone="negativo" size={70}/><LogoSymbol variant="tabuleiro" tone="negativo" size={50}/></div><LogoSymbol size={28}/></div>
+<div className="row" style={{alignItems:'stretch',gap:0}}>
+<div style={{background:'var(--xa-preto)',padding:20,display:'flex',alignItems:'center'}}><Wordmark tone="duo" size={30}/></div>
+<div style={{background:'var(--xa-rosa)',padding:20,display:'flex',alignItems:'center'}}><Wordmark tone="preto" size={30}/></div>
+<div style={{background:'var(--xa-amarelo)',padding:20,display:'flex',alignItems:'center'}}><Wordmark tone="preto" size={30}/></div>
+<div style={{padding:20,display:'flex',alignItems:'center',border:'3px solid var(--xa-preto)'}}><Wordmark tone="preto" size={30}/></div></div>
+<div className="row"><CoBrand partner="Bar do Zé" size={22}/><div style={{background:'var(--xa-preto)',padding:'10px 14px'}}><CoBrand partner="Bar do Zé" tone="duo" size={22}/></div></div>
+<div className="row" style={{gap:8}}>{['classic','duel','rosa','amarelo','soft'].map(p=><Checker key={p} palette={p} cell={12} width={120} height={48} style={{border:'2px solid var(--xa-preto)'}}/>)}</div></>);}
+ReactDOM.createRoot(document.getElementById('r')).render(<Card/>);
+</script></body></html>

@@ -1,0 +1,122 @@
+/* Página pública: coluna de celular sobre papel creme. */
+.corpo-pagina { background: var(--surface-page); color: var(--text-1); color-scheme: light; }
+.corpo-pagina .nota, .corpo-pagina .meta { color: var(--text-2); }
+.corpo-pagina .campo label small { color: var(--text-3); }
+
+.strip { height: 24px; background: var(--checker-classic) 0 0 / 24px 24px; }
+.strip.topo { border-bottom: var(--border-base) solid var(--xa-preto); }
+.strip.duelo { background: var(--checker-duel) 0 0 / 24px 24px; border-top: var(--border-base) solid var(--xa-preto); }
+.pg-in { display: flex; flex-direction: column; gap: 36px; max-width: 480px; margin: 0 auto; padding: 20px 16px 32px; }
+
+.hd { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; }
+.hd .peao { width: 38px; height: auto; display: block; }
+.wordmark { font-family: var(--font-display); font-size: 28px; line-height: 1; letter-spacing: var(--ls-display); }
+.cobrand {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 6px;
+  font-weight: 700; font-size: var(--fs-micro); letter-spacing: var(--ls-label); text-transform: uppercase;
+}
+.tag-live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--xa-rosa); animation: pisca 1.4s steps(2, jump-none) infinite; }
+@keyframes pisca { from { opacity: 1; } to { opacity: .2; } }
+
+/* A mesa numa linha: o quadriculado anda conforme a torcida. */
+.banda {
+  --p: 50%; position: relative; height: 68px; overflow: hidden;
+  background: var(--xa-rosa); border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto);
+  transition: --p .6s var(--ease-out);
+}
+.b-a { position: absolute; inset: 0 0 0 var(--p); background: var(--xa-amarelo); }
+.b-x {
+  position: absolute; top: 0; bottom: 0; left: var(--p); width: 36px; transform: translateX(-50%);
+  background: var(--checker-classic) 0 0 / 30px 30px; border-inline: var(--border-base) solid var(--xa-preto);
+}
+.b-nome {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-display); font-size: 26px; line-height: 1.15;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.b-nome.r { left: 14px; max-width: calc(var(--p) - 34px); }
+.b-nome.a { right: 14px; max-width: calc(100% - var(--p) - 34px); text-align: right; }
+
+.premio {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px; padding: 12px 14px;
+  border: var(--border-base) dashed var(--xa-preto); background: var(--xa-creme-100);
+}
+.premio .glifo { font-family: var(--font-pieces); font-size: 34px; line-height: 1; }
+.premio b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.1; overflow-wrap: anywhere; }
+
+.mesa-livre { display: flex; flex-direction: column; gap: 6px; padding: 20px 16px; border: var(--border-base) dashed var(--xa-preto); background: var(--xa-creme-100); }
+.voto { display: flex; flex-direction: column; gap: 12px; }
+.voto-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.voto-ok { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+
+/* Virar casaca: a ficha gira no ar e o botão troca de cor no meio do giro. */
+.casaca {
+  --lado: var(--xa-rosa);
+  display: inline-flex; align-items: center; gap: 12px; padding: 6px 22px 6px 6px;
+  background: var(--lado); color: var(--xa-preto);
+  border: var(--border-base) solid var(--xa-preto); border-radius: var(--radius-pill); box-shadow: var(--shadow-hard);
+  font-family: var(--font-display); font-size: 20px; line-height: 1;
+  cursor: pointer; perspective: 500px; -webkit-tap-highlight-color: transparent;
+  transition: background-color 60ms linear, transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.casaca.amarelo { --lado: var(--xa-amarelo); }
+@media (hover: hover) { .casaca:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--xa-preto); } }
+.casaca:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--xa-preto); }
+.casaca:focus-visible { outline: 3px solid var(--xa-preto); outline-offset: 3px; }
+.casaca:disabled { cursor: progress; }
+.moeda { position: relative; flex: none; width: 52px; height: 52px; transform-style: preserve-3d; }
+.face {
+  position: absolute; inset: 0; display: grid; place-items: center; border-radius: 50%;
+  border: var(--border-base) solid var(--xa-preto); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.face::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; border: 1.5px dashed var(--xa-preto); opacity: .5; }
+.face.f-rosa { background: var(--xa-rosa); }
+.face.f-amarelo { background: var(--xa-amarelo); transform: rotateY(180deg); }
+.face .peao { width: 22px; height: auto; display: block; }
+
+.bloco { display: flex; flex-direction: column; gap: 14px; padding: 16px; border: var(--border-base) solid var(--xa-preto); background: var(--xa-creme-100); box-shadow: 6px 6px 0 var(--xa-preto); }
+.bloco.voce { box-shadow: 6px 6px 0 var(--xa-rosa); }
+.bloco-hd { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.big { font-family: var(--font-display); font-size: 48px; line-height: 1; }
+.cta { display: flex; flex-direction: column; gap: 10px; }
+
+.fila, .hist, .cardapio { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.fila { gap: 10px; }
+.item { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border: var(--border-base) solid var(--xa-preto); background: var(--xa-creme-100); }
+.item.solo { border-style: dashed; background: transparent; }
+.item.prox { box-shadow: var(--shadow-hard); }
+.item.voce { box-shadow: var(--shadow-hard-rosa); }
+.sub { font-weight: 700; font-size: 11px; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-3); }
+.tags { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.vazio { padding: 16px; border: var(--border-base) dashed var(--xa-preto); font-weight: 700; }
+
+.placar { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto); }
+.pl { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; }
+.pl.rosa { background: var(--player-a-soft); }
+.pl.amarelo { background: var(--player-b-soft); align-items: flex-end; }
+.num { font-family: var(--font-display); font-size: 64px; line-height: .9; font-variant-numeric: tabular-nums; }
+.vs { display: grid; place-items: center; padding: 0 12px; background: var(--xa-creme); border-inline: var(--border-base) solid var(--xa-preto); font-weight: 700; font-size: 30px; }
+.hist li { display: flex; gap: 12px; padding: 8px 0; border-bottom: var(--border-thin) solid var(--xa-creme-400); font-size: 15px; }
+.hn { font-weight: 700; min-width: 2.4em; }
+
+.cardapio { gap: 10px; }
+.cardapio li { display: grid; grid-template-columns: 26px auto minmax(12px, 1fr) auto; align-items: baseline; gap: 8px; }
+.cardapio .glifo { font-family: var(--font-pieces); font-size: 22px; line-height: 1; }
+.peca { font-weight: 700; }
+.pontos { border-bottom: var(--border-thin) dotted var(--xa-preto-300); transform: translateY(-5px); }
+.bebida { text-align: right; }
+
+.adesivo {
+  align-self: flex-start; max-width: calc(100% - 12px); margin: 6px;
+  display: flex; flex-direction: column; gap: 4px; padding: 14px 16px;
+  background: var(--xa-amarelo); border: 10px solid var(--xa-creme-100); outline: var(--border-base) solid var(--xa-preto);
+  transform: rotate(-3deg);
+}
+.adesivo.rosa { background: var(--xa-rosa); transform: rotate(2deg); }
+.psiu { font-family: var(--font-accent); font-size: 30px; line-height: 1; }
+.ades-txt { font-weight: 700; }
+.arroba { font-weight: 700; font-size: 22px; letter-spacing: .02em; overflow-wrap: anywhere; color: var(--xa-preto); }
+span.arroba { -webkit-user-select: all; user-select: all; }
+.fechada { display: flex; flex-direction: column; gap: 8px; padding: 18px 16px; border: var(--border-base) dashed var(--xa-preto); background: var(--xa-creme-100); }
+.assin { font-family: var(--font-display); font-size: 40px; line-height: 1; text-wrap: balance; }
+.carregando { padding: 20px 0; font-weight: 700; }

@@ -1,0 +1,10 @@
+# material interno: fica só no computador
+antigo/
+PLANO.md
+
+# segredos (senha do banco)
+.env.local
+.env.*.local
+
+node_modules/
+dist/

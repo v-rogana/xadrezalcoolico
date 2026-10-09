@@ -1,0 +1,8 @@
+:root{
+--checker-cell:var(--cell-md);
+--checker-classic:repeating-conic-gradient(var(--xa-preto) 0 25%,var(--xa-creme) 0 50%);
+--checker-duel:repeating-conic-gradient(var(--xa-rosa) 0 25%,var(--xa-amarelo) 0 50%);
+--checker-rosa:repeating-conic-gradient(var(--xa-preto) 0 25%,var(--xa-rosa) 0 50%);
+--checker-amarelo:repeating-conic-gradient(var(--xa-preto) 0 25%,var(--xa-amarelo) 0 50%);
+--checker-soft:repeating-conic-gradient(var(--xa-creme-300) 0 25%,var(--xa-creme) 0 50%);
+}

@@ -1,0 +1,107 @@
+<!-- @dsCard group="Aplicações" viewport="1280x800" name="Aplicações da marca" subtitle="Social, impressos, jogo e merch com co-branding editável" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Xadrez Alcoólico · Aplicações</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+html,body{margin:0;height:100%}body{background:var(--xa-creme-300);color:var(--text-1);font-family:var(--font-body)}
+a{color:var(--link)}a:hover{color:var(--link-hover)}
+#root{height:100%}
+input{font-family:var(--font-mono);font-weight:700;font-size:15px;padding:9px 12px;border:3px solid var(--xa-preto);border-radius:var(--radius-sm);background:var(--xa-creme-100);width:100%;box-sizing:border-box;outline:none}
+input:focus{box-shadow:var(--shadow-hard-rosa)}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>window.XA = window.XadrezAlcoLicoDesignSystem_ee9af0;</script>
+</head><body><div id="root"></div>
+<script type="text/babel" src="Social.jsx"></script>
+<script type="text/babel" src="Print.jsx"></script>
+<script type="text/babel" src="Merch.jsx"></script>
+<script type="text/babel">
+const PIECES_LIST = [
+  { id: 'perfil', g: 'Social', name: 'Foto de perfil', spec: '1080 × 1080 · recorte circular · peão-copo', w: 1080, h: 1080, round: true },
+  { id: 'post', g: 'Social', name: 'Post de evento', spec: '1080 × 1350 · feed 4:5', w: 1080, h: 1350 },
+  { id: 'story', g: 'Social', name: 'Story', spec: '1080 × 1920 · 9:16', w: 1080, h: 1920 },
+  { id: 'collab', g: 'Social', name: 'Post collab', spec: '1080 × 1350 · co-branding', w: 1080, h: 1350 },
+  { id: 'flyer', g: 'Impressos', name: 'Panfleto A4', spec: '210 × 297 mm', w: 794, h: 1123 },
+  { id: 'tent', g: 'Impressos', name: 'Placa de mesa', spec: 'Table tent · 2 faces 105 × 150 mm', w: 880, h: 600 },
+  { id: 'menu', g: 'Impressos', name: 'Cardápio das peças', spec: 'A5 · nomes das bebidas editáveis', w: 559, h: 794 },
+  { id: 'fichas', g: 'Jogo & merch', name: 'Fichas de jogo', spec: 'Ø 30 mm', w: 1000, h: 542 },
+  { id: 'adesivos', g: 'Jogo & merch', name: 'Adesivos', spec: 'Recorte especial, borda creme', w: 1000, h: 640 },
+  { id: 'pano', g: 'Jogo & merch', name: 'Pano de mesa', spec: 'Planificado · tampo 80 cm + quedas 40 cm', w: 1160, h: 1160 },
+];
+const DEFAULT_DRINKS = { rei: 'Cachaça mineira', dama: 'Gin tônica', torre: 'Vodka com limão', bispo: 'Licor de jabuticaba', cavalo: 'Tequila', peao: '' };
+
+function Fit({ w, h, round, children }) {
+  const ref = React.useRef(null);
+  const [s, setS] = React.useState(0.3);
+  React.useEffect(() => {
+    const ro = new ResizeObserver(() => { const r = ref.current.getBoundingClientRect(); setS(Math.min((r.width - 80) / w, (r.height - 80) / h)); });
+    ro.observe(ref.current); return () => ro.disconnect();
+  }, [w, h]);
+  return (
+    <div ref={ref} style={{ flex: 1, position: 'relative', overflow: 'hidden', minHeight: 0 }}>
+      <div style={{ position: 'absolute', left: '50%', top: '50%', width: w, height: h, transform: 'translate(-50%,-50%) scale(' + s + ')',
+        boxShadow: round ? 'none' : '12px 12px 0 var(--xa-preto)', borderRadius: round ? '50%' : 0, overflow: round ? 'hidden' : 'visible',
+        outline: round ? '8px solid var(--xa-preto)' : 'none' }}>{children}</div>
+    </div>
+  );
+}
+
+function App() {
+  const [cur, setCur] = React.useState(() => localStorage.getItem('xa-kit-cur') || 'post');
+  const [partner, setPartner] = React.useState('Bar do Zé');
+  const [date, setDate] = React.useState('Sex · 14/11');
+  const [time, setTime] = React.useState('22h');
+  const [drinks, setDrinks] = React.useState(DEFAULT_DRINKS);
+  React.useEffect(() => { localStorage.setItem('xa-kit-cur', cur); }, [cur]);
+  const p = PIECES_LIST.find(x => x.id === cur) || PIECES_LIST[1];
+  const view = {
+    perfil: <ProfilePic />, post: <EventPost partner={partner} date={date} time={time} />, story: <Story partner={partner} date={date} time={time} />,
+    collab: <CollabPost partner={partner} />, flyer: <Flyer partner={partner} date={date} time={time} />, tent: <TableTent partner={partner} />,
+    menu: <Menu drinks={drinks} partner={partner} />, fichas: <Fichas />, adesivos: <Stickers />, pano: <TableCloth />,
+  }[p.id];
+  const groups = [...new Set(PIECES_LIST.map(x => x.g))];
+  const lbl = { fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-3)' };
+  return (
+    <div style={{ display: 'flex', height: '100%' }}>
+      <aside style={{ width: 280, flexShrink: 0, background: 'var(--xa-creme)', borderRight: '3px solid var(--xa-preto)', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+        <div style={{ background: 'var(--xa-preto)', padding: '22px 22px 18px' }}><XA.Wordmark tone="duo" size={22} symbol /></div>
+        <XA.Checker palette="duel" cell={10} height={20} />
+        <nav style={{ padding: '18px 14px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          {groups.map(g => (
+            <div key={g} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <span style={{ ...lbl, padding: '0 8px 4px' }}>{g}</span>
+              {PIECES_LIST.filter(x => x.g === g).map(x => (
+                <button key={x.id} onClick={() => setCur(x.id)} style={{ textAlign: 'left', fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 18, padding: '8px 10px',
+                  border: '2px solid ' + (x.id === cur ? 'var(--xa-preto)' : 'transparent'), borderRadius: 'var(--radius-sm)', cursor: 'pointer',
+                  background: x.id === cur ? 'var(--xa-rosa)' : 'transparent', color: 'var(--xa-preto)', boxShadow: x.id === cur ? 'var(--shadow-hard-sm)' : 'none' }}>{x.name}</button>
+              ))}
+            </div>
+          ))}
+        </nav>
+        <div style={{ marginTop: 'auto', padding: 18, borderTop: '3px solid var(--xa-preto)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <span style={lbl}>Bar parceiro</span><input value={partner} onChange={e => setPartner(e.target.value)} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px', gap: 8 }}><input value={date} onChange={e => setDate(e.target.value)} /><input value={time} onChange={e => setTime(e.target.value)} /></div>
+        </div>
+      </aside>
+      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        <header style={{ padding: '16px 28px', display: 'flex', alignItems: 'center', gap: 14, borderBottom: '3px solid var(--xa-preto)', background: 'var(--xa-creme)' }}>
+          <h1 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 30 }}>{p.name}</h1>
+          <XA.Tag mono tone="creme">{p.spec}</XA.Tag>
+        </header>
+        {p.id === 'menu' ? (
+          <div style={{ display: 'flex', gap: 8, padding: '12px 28px', flexWrap: 'wrap', borderBottom: '2px solid var(--xa-creme-400)', background: 'var(--xa-creme-100)' }}>
+            {MENU_ORDER.map(([k]) => (
+              <input key={k} placeholder={k} value={drinks[k]} onChange={e => setDrinks({ ...drinks, [k]: e.target.value })} style={{ width: 150, fontSize: 13, padding: '6px 8px', borderWidth: 2 }} />
+            ))}
+          </div>
+        ) : null}
+        <Fit key={p.id} w={p.w} h={p.h} round={p.round}>{view}</Fit>
+      </main>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

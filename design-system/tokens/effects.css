@@ -1,0 +1,11 @@
+:root{
+--shadow-hard-sm:2px 2px 0 var(--xa-preto);--shadow-hard:4px 4px 0 var(--xa-preto);--shadow-hard-lg:8px 8px 0 var(--xa-preto);
+--shadow-hard-rosa:4px 4px 0 var(--xa-rosa);--shadow-hard-amarelo:4px 4px 0 var(--xa-amarelo);
+--ease-snap:cubic-bezier(.3,1.6,.5,1);/* @kind other */
+--ease-out:cubic-bezier(.2,.8,.2,1);/* @kind other */
+--dur-fast:90ms;/* @kind other */
+--dur-base:160ms;/* @kind other */
+--dur-slow:320ms;/* @kind other */
+
+--press-offset:2px;--hover-lift:-2px;
+}
