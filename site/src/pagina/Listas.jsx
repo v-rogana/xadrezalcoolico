@@ -59,12 +59,12 @@ export function Placar({ placar, hist }) {
   );
 }
 
-export function Cardapio({ cardapio }) {
+export function Cardapio({ cardapio, meta, nota }) {
   return (
     <section className="sec" aria-labelledby="t-cardapio">
       <div className="sec-hd">
         <h2 className="h2" id="t-cardapio">Cardápio das peças</h2>
-        <span className="meta">Hoje</span>
+        {meta && <span className="meta">{meta}</span>}
       </div>
       <ul className="cardapio">
         {PECAS.map((p, i) => (
@@ -76,17 +76,7 @@ export function Cardapio({ cardapio }) {
           </li>
         ))}
       </ul>
-      <p className="nota">Capturou uma peça? Bebe o copinho dela.</p>
+      {nota && <p className="nota">{nota}</p>}
     </section>
-  );
-}
-
-export function Lembrete() {
-  return (
-    <div className="adesivo">
-      <p className="psiu">psiu,</p>
-      <p className="ades-txt">Tirou foto? Marca a gente.</p>
-      <span className="arroba">@xadrezalcoolico</span>
-    </div>
   );
 }

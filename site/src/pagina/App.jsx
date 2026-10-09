@@ -3,11 +3,11 @@ import { usePublico } from '../lib/usePublico.js';
 import { rpc } from '../lib/supabase.js';
 import { meuCelular } from '../lib/celular.js';
 import { ler, gravar } from '../lib/armazem.js';
-import { diaCurto } from '../lib/datas.js';
-import Peao from '../comum/Peao.jsx';
+import Moldura from '../comum/Moldura.jsx';
+import Adesivo from '../comum/Adesivo.jsx';
 import Mesa from './Mesa.jsx';
 import Voce from './Voce.jsx';
-import { Fila, Placar, Cardapio, Lembrete } from './Listas.jsx';
+import { Fila, Placar, Cardapio } from './Listas.jsx';
 import Fechada from './Fechada.jsx';
 
 export default function App() {
@@ -94,41 +94,22 @@ export default function App() {
     }
   }
 
-  const noite = dados?.noite;
   return (
-    <>
-      <div className="strip topo" />
-      <main className="pg-in">
-        <header className="hd">
-          <Peao />
-          <div>
-            <p className="wordmark">Xadrez Alcoólico</p>
-            <p className="cobrand">
-              {aberta ? `${noite.bar ? `× ${noite.bar} · ` : ''}${diaCurto(noite.aberta_em)}` : 'Capturou? Bebeu.'}
-              {aberta && <span className="tag tag-preto tag-live">Ao vivo</span>}
-            </p>
-          </div>
-        </header>
-
-        {!dados ? (
-          <p className="carregando" role="status">{semConexao ? 'Sem conexão. Tentando de novo…' : 'Carregando a mesa…'}</p>
-        ) : aberta ? (
-          <>
-            <Mesa mesa={mesa} proximoN={dados.proximo_n} premio={noite.premio} meuVoto={meuVoto} naMesa={naMesa} onVotar={votar} />
-            <Voce dados={dados} minha={minha} naMesa={naMesa} jogou={jogou} aguardando={aguardando} onEntrar={entrar} onSair={sair} />
-            <Fila fila={fila} minha={minha} />
-            <Placar placar={dados.placar} hist={dados.hist} />
-            <Cardapio cardapio={noite.cardapio} />
-            <Lembrete />
-          </>
-        ) : (
-          <Fechada dados={dados} />
-        )}
-
-        <p className="assin">Capturou? Bebeu.</p>
-      </main>
-      <div className="strip duelo" />
-      {aviso && <div className="aviso" role="alert">{aviso}</div>}
-    </>
+    <Moldura noite={dados?.noite} aviso={aviso}>
+      {!dados ? (
+        <p className="carregando" role="status">{semConexao ? 'Sem conexão. Tentando de novo…' : 'Carregando a mesa…'}</p>
+      ) : aberta ? (
+        <>
+          <Mesa mesa={mesa} proximoN={dados.proximo_n} premio={dados.noite.premio} meuVoto={meuVoto} onVotar={votar} />
+          <Voce dados={dados} minha={minha} naMesa={naMesa} jogou={jogou} aguardando={aguardando} onEntrar={entrar} onSair={sair} />
+          <Fila fila={fila} minha={minha} />
+          <Placar placar={dados.placar} hist={dados.hist} />
+          <Cardapio cardapio={dados.noite.cardapio} meta="Hoje" nota="Capturou uma peça? Bebe o copinho dela." />
+          <Adesivo psiu="psiu," texto="Tirou foto? Marca a gente." />
+        </>
+      ) : (
+        <Fechada dados={dados} />
+      )}
+    </Moldura>
   );
 }

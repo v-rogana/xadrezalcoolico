@@ -4,7 +4,10 @@
 
 .pn-in { display: flex; flex-direction: column; gap: 20px; max-width: 480px; margin: 0 auto; padding: 20px 16px 120px; }
 .pn-hd { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; }
-.pn-hd .peao { width: 30px; height: auto; display: block; }
+.marca-pn { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--xa-creme); }
+.marca-pn img { display: block; width: 36px; height: auto; }
+.marca-pn.grande { width: 80px; height: 80px; }
+.marca-pn.grande img { width: 60px; }
 .pn-linha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
 .pn-placar { display: flex; align-items: center; gap: 10px; }
 .pp {
@@ -65,7 +68,6 @@
 .x:disabled { cursor: not-allowed; }
 .tag-escura { background: var(--xa-preto-700); color: var(--xa-creme); border-color: var(--xa-preto-500); }
 .pn-login { gap: 16px; padding-top: 40px; }
-.pn-login .peao { width: 56px; height: auto; display: block; }
 .login { display: flex; flex-direction: column; gap: 14px; }
 .rodape-pn { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; }
 

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { MIN_POR_PARTIDA } from '../lib/constantes.js';
+import { ROTAS } from '../lib/rotas.js';
 import FormFila from '../comum/FormFila.jsx';
 
 // O que este celular vê sobre si: sua vez, seu lugar na fila, ou o convite pra entrar.
+// O "Bora pra fila" da página Como joga chega aqui com #entrar e já abre o formulário.
 export default function Voce({ dados, minha, naMesa, jogou, aguardando, onEntrar, onSair }) {
-  const [form, setForm] = useState(false);
+  const [form, setForm] = useState(() => window.location.hash === '#entrar');
   const [confirmarSaida, setConfirmarSaida] = useState(false);
 
   if (naMesa) {
@@ -95,6 +97,7 @@ export default function Voce({ dados, minha, naMesa, jogou, aguardando, onEntrar
         {jogou ? 'Revanche? Entra de novo' : 'Entrar na fila'}
       </button>
       <p className="nota">Em dupla ou solo. Sem cadastro.</p>
+      <a className="btn-link" href={ROTAS.comoJoga}>Nunca jogou? Veja como joga</a>
     </div>
   );
 }

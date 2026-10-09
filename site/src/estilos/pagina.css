@@ -9,7 +9,9 @@
 .pg-in { display: flex; flex-direction: column; gap: 36px; max-width: 480px; margin: 0 auto; padding: 20px 16px 32px; }
 
 .hd { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; }
-.hd .peao { width: 38px; height: auto; display: block; }
+.hd-marca { display: block; border-radius: var(--radius-sm); }
+.hd-marca img { display: block; width: 64px; height: auto; }
+.hd-marca:focus-visible { outline: 3px solid var(--xa-rosa); outline-offset: 3px; }
 .wordmark { font-family: var(--font-display); font-size: 28px; line-height: 1; letter-spacing: var(--ls-display); }
 .cobrand {
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 6px;
@@ -116,7 +118,80 @@
 .psiu { font-family: var(--font-accent); font-size: 30px; line-height: 1; }
 .ades-txt { font-weight: 700; }
 .arroba { font-weight: 700; font-size: 22px; letter-spacing: .02em; overflow-wrap: anywhere; color: var(--xa-preto); }
-span.arroba { -webkit-user-select: all; user-select: all; }
+/* Adesivo que é link: abre o Instagram. Sobe no hover, afunda no toque, como os botões. */
+.adesivo-link { color: var(--xa-preto); text-decoration: none; transition: transform var(--dur-base) var(--ease-out); -webkit-tap-highlight-color: transparent; }
+.adesivo-link .arroba { text-decoration: underline; text-underline-offset: 4px; }
+@media (hover: hover) { .adesivo-link:hover { transform: rotate(-1deg) translateY(-3px); } }
+.adesivo-link:active { transform: rotate(-3deg) translate(2px, 2px); }
+.adesivo-link:focus-visible { outline-color: var(--xa-rosa); outline-width: 4px; }
 .fechada { display: flex; flex-direction: column; gap: 8px; padding: 18px 16px; border: var(--border-base) dashed var(--xa-preto); background: var(--xa-creme-100); }
-.assin { font-family: var(--font-display); font-size: 40px; line-height: 1; text-wrap: balance; }
 .carregando { padding: 20px 0; font-weight: 700; }
+.lead { font-size: var(--fs-body-l); }
+.voltar { margin-bottom: -16px; }
+
+.rodape { display: flex; flex-direction: column; gap: 24px; }
+.rodape-nav { display: flex; flex-wrap: wrap; gap: 0 20px; padding-top: 16px; border-top: var(--border-base) solid var(--xa-preto); }
+.rodape-nav .btn-link { padding: 10px 0; }
+.assin { font-family: var(--font-display); font-size: 40px; line-height: 1; text-wrap: balance; }
+
+/* Noite encerrada: "palcos" coloridos com faixa quadriculada no topo, pras imagens. */
+.palco { position: relative; padding: 44px 20px 30px; border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto); }
+.palco::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 20px; background: var(--checker-classic) 0 0 / 20px 20px; border-bottom: var(--border-base) solid var(--xa-preto); }
+.palco.amarelo { background: var(--xa-amarelo); }
+.palco.rosa { background: var(--xa-rosa); }
+.recorte {
+  display: block; background: #fff; border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto);
+  transform: rotate(-1.5deg); transition: transform var(--dur-base) var(--ease-out);
+}
+.recorte img { display: block; width: 100%; height: auto; }
+@media (hover: hover) { .recorte:hover { transform: rotate(0deg) translateY(-2px); } }
+.recorte:focus-visible { outline: 3px solid var(--xa-preto); outline-offset: 4px; }
+.polaroid {
+  margin: 0; display: flex; flex-direction: column; gap: 10px; padding: 10px 10px 14px;
+  background: var(--xa-creme-100); border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto);
+  transform: rotate(2deg);
+}
+.polaroid img { display: block; width: 100%; height: auto; border: var(--border-base) solid var(--xa-preto); }
+.polaroid figcaption { font-family: var(--font-accent); font-size: 22px; line-height: 1.1; text-align: center; }
+.em { display: flex; flex-direction: column; gap: 14px; padding: 16px; border: var(--border-base) solid var(--xa-preto); background: var(--xa-creme-100); box-shadow: 6px 6px 0 var(--xa-preto); }
+.em-grid { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; align-items: start; }
+.em-grid img { display: block; width: 100%; height: auto; border: var(--border-base) solid var(--xa-preto); }
+.nums { display: flex; flex-direction: column; gap: 12px; }
+.nums b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1; }
+.nums span { font-size: 13px; }
+.teaser {
+  display: flex; flex-direction: column; gap: 12px; padding: 18px 16px;
+  background: var(--surface-ink); color: var(--text-on-ink); border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-rosa);
+}
+.corpo-pagina .teaser .nota { color: var(--xa-creme-400); }
+.teaser .btn { --sh: var(--xa-rosa); background: var(--xa-creme); align-self: flex-start; }
+
+/* Como joga */
+.regras-casa, .pecas, .ganhos, .passos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.regras-casa { gap: 10px; }
+.regras-casa li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 12px; border: var(--border-base) solid var(--xa-preto); background: var(--xa-creme-100); }
+.regras-casa .glifo { font-family: var(--font-pieces); font-size: 20px; line-height: 1.2; }
+.objetivo { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; background: var(--xa-amarelo); border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto); }
+.pecas { gap: 16px; }
+.pecas li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; }
+.mini { display: grid; grid-template-columns: repeat(5, 18px); grid-auto-rows: 18px; border: var(--border-thin) solid var(--xa-preto); }
+.mini > span { display: grid; place-items: center; }
+.mini .cla { background: var(--xa-creme-100); }
+.mini .esc { background: var(--xa-creme-400); }
+.mini .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--xa-rosa); border: 1.5px solid var(--xa-preto); }
+.mini .mg { font-family: var(--font-pieces); font-size: 15px; line-height: 1; }
+.mini .cap { font-weight: 700; font-size: 14px; line-height: 1; }
+.peca-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.peca-nome { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.peca-nome b { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1; }
+
+/* Parcerias */
+.stat { display: flex; flex-direction: column; gap: 6px; padding: 18px 16px; border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto); }
+.stat.rosa { background: var(--xa-rosa); }
+.stat.amarelo { background: var(--xa-amarelo); }
+.stat-num { font-family: var(--font-display); font-size: 56px; line-height: .9; }
+.ganhos li { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: var(--border-thin) solid var(--xa-creme-400); }
+.ganhos li:first-child { padding-top: 0; }
+.passos { gap: 14px; counter-reset: passo; }
+.passos li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; align-items: start; counter-increment: passo; }
+.passos li::before { content: counter(passo); display: grid; place-items: center; width: 32px; height: 32px; background: var(--xa-preto); color: var(--xa-creme); font-weight: 700; }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { rpc } from '../lib/supabase.js';
-import Peao from '../comum/Peao.jsx';
+import Marca from './Marca.jsx';
 
 export default function Login({ onEntrar }) {
   const [senha, setSenha] = useState('');
@@ -25,7 +25,7 @@ export default function Login({ onEntrar }) {
 
   return (
     <main className="pn-in pn-login">
-      <Peao tinta="var(--xa-creme)" papel="var(--xa-preto)" />
+      <Marca grande />
       <h1 className="h2">Painel</h1>
       <p className="nota">Só pra equipe da noite. Entrou, fica logado por 12 horas.</p>
       <form className="login" onSubmit={enviar} noValidate>

@@ -20,6 +20,8 @@ export default defineConfig({
       input: {
         pagina: caminho('site/index.html'),
         painel: caminho('site/painel/index.html'),
+        comoJoga: caminho('site/como-joga/index.html'),
+        parcerias: caminho('site/parcerias/index.html'),
       },
       output: {
         // Bibliotecas num arquivo só: mudam pouco e ficam em cache entre as noites.

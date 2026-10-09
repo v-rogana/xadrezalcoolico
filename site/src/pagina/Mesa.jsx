@@ -71,7 +71,8 @@ function VotoFeito({ lado, onVirar }) {
   );
 }
 
-export default function Mesa({ mesa, proximoN, premio, meuVoto, naMesa, onVotar }) {
+// Todo mundo vota, inclusive quem está jogando.
+export default function Mesa({ mesa, proximoN, premio, meuVoto, onVotar }) {
   if (!mesa) {
     return (
       <section className="sec" aria-labelledby="t-mesa">
@@ -105,9 +106,7 @@ export default function Mesa({ mesa, proximoN, premio, meuVoto, naMesa, onVotar 
         <span className="b-nome a">{mesa.amarelo}</span>
       </div>
       <Premio premio={premio} />
-      {naMesa ? (
-        <p className="nota">Você tá jogando. A torcida tá de olho.</p>
-      ) : meuVoto ? (
+      {meuVoto ? (
         <VotoFeito lado={meuVoto} onVirar={onVotar} />
       ) : (
         <div className="voto">

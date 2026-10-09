@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { PECAS, TEXTO } from '../lib/constantes.js';
-
-const PADRAO = ['Xeque Mate', 'Gin Queen', 'Whisky White Horse', 'Vinho Vila do Bispo', 'Cachaça da Torre', 'Corote'];
+import { CARDAPIO_PADRAO as PADRAO, PECAS, TEXTO } from '../lib/constantes.js';
 
 // Abrir ou editar a noite. Já vem preenchido com a noite anterior (mesmo bar, mesmo cardápio).
 export default function FormNoite({ titulo, botao, inicial, ocupado, onEnviar, onCancelar }) {

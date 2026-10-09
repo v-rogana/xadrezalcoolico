@@ -3,7 +3,7 @@ import { usePublico } from '../lib/usePublico.js';
 import { rpc } from '../lib/supabase.js';
 import { ler, gravar } from '../lib/armazem.js';
 import { diaCurto } from '../lib/datas.js';
-import Peao from '../comum/Peao.jsx';
+import Marca from './Marca.jsx';
 import Login from './Login.jsx';
 import FormNoite from './FormNoite.jsx';
 import MesaPainel from './MesaPainel.jsx';
@@ -124,7 +124,7 @@ export default function App() {
     <>
       <main className="pn-in">
         <header className="pn-hd">
-          <Peao tinta="var(--xa-creme)" papel="var(--xa-preto)" />
+          <Marca />
           <div>
             <h1 className="h2">Painel</h1>
             <p className="meta">{aberta ? `${noite.bar ? `${noite.bar} · ` : ''}${diaCurto(noite.aberta_em)}` : 'Nenhuma noite aberta'}</p>
