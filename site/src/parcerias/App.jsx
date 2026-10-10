@@ -39,7 +39,7 @@ export default function App() {
         <h2 className="h2" id="t-piloto">Como funciona o piloto</h2>
         <ol className="passos">
           <li><p>A gente monta o tabuleiro e conduz as partidas a noite toda.</p></li>
-          <li><p>A entrada fica entre R$ 15 e R$ 20 por jogador, valor que só cobre nossos insumos.</p></li>
+          <li><p>A entrada é de R$ 15 por jogador, valor que só cobre nossos insumos.</p></li>
           <li><p>A cobrança fica do jeito mais simples pra casa: ficha no caixa, consumação mínima ou a gente cuidando da lista e do pagamento.</p></li>
           <li><p>A divulgação fica por nossa conta, em collab com o bar.</p></li>
           <li><p>Depois da noite, olhamos juntos o público, as menções no Instagram e o consumo, e montamos um formato recorrente.</p></li>
