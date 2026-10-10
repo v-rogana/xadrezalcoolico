@@ -39,7 +39,15 @@ img { max-width: 100%; }
 .sec { display: flex; flex-direction: column; gap: 14px; }
 .sec-hd { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
 .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.link { font-weight: 700; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+/* Link de texto: sublinhado grosso que vira marca-texto no hover/toque. Os que saem do site ganham ↗. */
+.link {
+  font-weight: 700; color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px;
+  background: linear-gradient(var(--xa-amarelo), var(--xa-amarelo)) 0 100% / 0 45% no-repeat;
+  transition: background-size var(--dur-base) var(--ease-out); -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) { .link:hover { background-size: 100% 45%; } }
+.link:active { background-size: 100% 45%; }
+.link[target="_blank"]::after, .btn-link[target="_blank"]::after { content: "\00a0↗"; text-decoration: none; display: inline-block; }
 
 .tag {
   display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px 2px;
@@ -64,8 +72,11 @@ img { max-width: 100%; }
   cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
   transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
+/* No hover o botão sobe e inclina de leve; Rosa e Amarelo inclinam cada um pro seu lado. */
+.btn { --incl: -1.5deg; }
+.btn-amarelo { --incl: 1.5deg; }
 @media (hover: hover) {
-  .btn:not(:disabled):hover { transform: translate(-2px, -2px); box-shadow: calc(var(--off) + 2px) calc(var(--off) + 2px) 0 var(--sh); }
+  .btn:not(:disabled):hover { transform: translate(-2px, -2px) rotate(var(--incl)); box-shadow: calc(var(--off) + 2px) calc(var(--off) + 2px) 0 var(--sh); }
 }
 .btn:not(:disabled):active { transform: translate(var(--off), var(--off)); box-shadow: 0 0 0 var(--sh); }
 .btn:focus-visible { outline: 3px solid var(--xa-rosa); outline-offset: 3px; }
@@ -82,8 +93,12 @@ img { max-width: 100%; }
 .btn-link {
   align-self: flex-start; padding: 6px 0; background: none; border: 0; color: inherit; cursor: pointer;
   font-weight: 700; font-size: 13px; letter-spacing: var(--ls-label); text-transform: uppercase;
-  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px;
+  display: inline-block; transform-origin: left center; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur-fast) var(--ease-snap), color var(--dur-fast) var(--ease-out);
 }
+@media (hover: hover) { .btn-link:hover { transform: rotate(-3deg) translateY(-1px); color: var(--xa-rosa-700); } }
+.btn-link:active { transform: rotate(-3deg) translateY(1px); color: var(--xa-rosa-700); }
 .btn-link:focus-visible, .link:focus-visible { outline: 3px solid var(--xa-rosa); outline-offset: 2px; }
 
 .ficha {
@@ -145,4 +160,15 @@ img { max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Celular: a cutucada de quando um clicável aparece na tela (ver comum/toque.js). */
+@keyframes cutuca {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  35% { translate: 0 -3px; rotate: -3deg; }
+  70% { translate: 0 0; rotate: 1.5deg; }
+}
+@media (hover: none) {
+  .cutuca { animation: cutuca .5s var(--ease-snap) var(--atraso, 0ms) both; }
+  .btn-amarelo.cutuca { animation-direction: reverse; }
 }

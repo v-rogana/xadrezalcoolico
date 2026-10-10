@@ -1,6 +1,7 @@
 /* Painel: preto, botões grandes, uma mão, no escuro. Traço creme no lugar do preto (versão negativa). */
 .corpo-painel { background: var(--surface-ink); color: var(--text-on-ink); color-scheme: dark; }
 .corpo-painel .meta, .corpo-painel .nota, .corpo-painel .ig-t, .corpo-painel .campo label small { color: var(--text-on-ink-2); }
+.corpo-painel .btn-link:hover, .corpo-painel .btn-link:active { color: var(--xa-rosa); }
 
 .pn-in { display: flex; flex-direction: column; gap: 20px; max-width: 480px; margin: 0 auto; padding: 20px 16px 120px; }
 .pn-hd { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; }

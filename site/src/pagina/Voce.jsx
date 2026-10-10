@@ -96,7 +96,7 @@ export default function Voce({ dados, minha, naMesa, jogou, aguardando, onEntrar
       <button type="button" className="btn btn-preto btn-lg btn-block" onClick={() => setForm(true)}>
         {jogou ? 'Revanche? Entra de novo' : 'Entrar na fila'}
       </button>
-      <p className="nota">Em dupla ou solo. Sem cadastro.</p>
+      <p className="nota">Em dupla ou solo.</p>
       <a className="btn-link" href={ROTAS.comoJoga}>Nunca jogou? Veja como joga</a>
     </div>
   );

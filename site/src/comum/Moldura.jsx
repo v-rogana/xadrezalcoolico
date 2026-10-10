@@ -4,7 +4,7 @@ import { INSTAGRAM } from '../lib/constantes.js';
 import { ROTAS } from '../lib/rotas.js';
 
 // Cabeçalho, rodapé e as faixas quadriculadas das páginas públicas.
-// Com a noite aberta, o cabeçalho assina "× bar · data" e mostra "Ao vivo".
+// Com a noite aberta, o cabeçalho assina "× bar · data".
 export default function Moldura({ noite, aviso, children }) {
   const aberta = !!noite?.aberta;
   return (
@@ -19,7 +19,6 @@ export default function Moldura({ noite, aviso, children }) {
             <p className="wordmark">Xadrez Alcoólico</p>
             <p className="cobrand">
               {aberta ? `${noite.bar ? `× ${noite.bar} · ` : ''}${diaCurto(noite.aberta_em)}` : 'Capturou? Bebeu.'}
-              {aberta && <span className="tag tag-preto tag-live">Ao vivo</span>}
             </p>
           </div>
         </header>

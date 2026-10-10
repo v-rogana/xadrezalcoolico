@@ -17,8 +17,6 @@
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 6px;
   font-weight: 700; font-size: var(--fs-micro); letter-spacing: var(--ls-label); text-transform: uppercase;
 }
-.tag-live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--xa-rosa); animation: pisca 1.4s steps(2, jump-none) infinite; }
-@keyframes pisca { from { opacity: 1; } to { opacity: .2; } }
 
 /* A mesa numa linha: o quadriculado anda conforme a torcida. */
 .banda {
@@ -109,28 +107,43 @@
 .bebida { text-align: right; }
 
 .adesivo {
+  --rot: -3deg;
   align-self: flex-start; max-width: calc(100% - 12px); margin: 6px;
   display: flex; flex-direction: column; gap: 4px; padding: 14px 16px;
   background: var(--xa-amarelo); border: 10px solid var(--xa-creme-100); outline: var(--border-base) solid var(--xa-preto);
-  transform: rotate(-3deg);
+  transform: rotate(var(--rot));
 }
-.adesivo.rosa { background: var(--xa-rosa); transform: rotate(2deg); }
+.adesivo.rosa { --rot: 2deg; background: var(--xa-rosa); }
 .psiu { font-family: var(--font-accent); font-size: 30px; line-height: 1; }
 .ades-txt { font-weight: 700; }
 .arroba { font-weight: 700; font-size: 22px; letter-spacing: .02em; overflow-wrap: anywhere; color: var(--xa-preto); }
-/* Adesivo que é link: abre o Instagram. Sobe no hover, afunda no toque, como os botões. */
-.adesivo-link { color: var(--xa-preto); text-decoration: none; transition: transform var(--dur-base) var(--ease-out); -webkit-tap-highlight-color: transparent; }
-.adesivo-link .arroba { text-decoration: underline; text-underline-offset: 4px; }
-@media (hover: hover) { .adesivo-link:hover { transform: rotate(-1deg) translateY(-3px); } }
-.adesivo-link:active { transform: rotate(-3deg) translate(2px, 2px); }
-.adesivo-link:focus-visible { outline-color: var(--xa-rosa); outline-width: 4px; }
+
+/* Instagram é a prioridade: o adesivo chacoalha a cada 4 s, como quem chama "psiu".
+   Parado no hover, sobe; no toque, afunda. */
+@keyframes chacoalha {
+  0%, 82%, 100% { transform: rotate(var(--rot)); }
+  85% { transform: rotate(calc(var(--rot) + 5deg)) scale(1.04); }
+  88% { transform: rotate(calc(var(--rot) - 4deg)) scale(1.04); }
+  91% { transform: rotate(calc(var(--rot) + 3deg)) scale(1.02); }
+  94% { transform: rotate(calc(var(--rot) - 1deg)); }
+}
+.adesivo-link {
+  color: var(--xa-preto); text-decoration: none; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur-base) var(--ease-out);
+  animation: chacoalha 4s var(--ease-out) 1.2s infinite;
+}
+.adesivo-link .arroba { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.adesivo-link .arroba::after { content: "\00a0↗"; display: inline-block; }
+@media (hover: hover) { .adesivo-link:hover { animation: none; transform: rotate(calc(var(--rot) + 2deg)) translateY(-4px) scale(1.03); } }
+.adesivo-link:active { animation: none; transform: rotate(var(--rot)) translate(2px, 2px) scale(.98); }
+
 .fechada { display: flex; flex-direction: column; gap: 8px; padding: 18px 16px; border: var(--border-base) dashed var(--xa-preto); background: var(--xa-creme-100); }
 .carregando { padding: 20px 0; font-weight: 700; }
 .lead { font-size: var(--fs-body-l); }
 .voltar { margin-bottom: -16px; }
 
 .rodape { display: flex; flex-direction: column; gap: 24px; }
-.rodape-nav { display: flex; flex-wrap: wrap; gap: 0 20px; padding-top: 16px; border-top: var(--border-base) solid var(--xa-preto); }
+.rodape-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; padding-top: 16px; border-top: var(--border-base) solid var(--xa-preto); }
 .rodape-nav .btn-link { padding: 10px 0; }
 .assin { font-family: var(--font-display); font-size: 40px; line-height: 1; text-wrap: balance; }
 
@@ -142,9 +155,11 @@
 .recorte {
   display: block; background: #fff; border: var(--border-base) solid var(--xa-preto); box-shadow: 6px 6px 0 var(--xa-preto);
   transform: rotate(-1.5deg); transition: transform var(--dur-base) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
 }
 .recorte img { display: block; width: 100%; height: auto; }
-@media (hover: hover) { .recorte:hover { transform: rotate(0deg) translateY(-2px); } }
+@media (hover: hover) { .recorte:hover { transform: rotate(0deg) translateY(-3px); } }
+.recorte:active { transform: rotate(-1.5deg) translate(3px, 3px); box-shadow: 3px 3px 0 var(--xa-preto); }
 .recorte:focus-visible { outline: 3px solid var(--xa-preto); outline-offset: 4px; }
 .polaroid {
   margin: 0; display: flex; flex-direction: column; gap: 10px; padding: 10px 10px 14px;
