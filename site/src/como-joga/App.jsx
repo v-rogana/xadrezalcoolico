@@ -27,7 +27,7 @@ const MOVIMENTOS = [
   { nome: 'Torre', pos: [2, 2], anda: raios(RETO),
     texto: 'Anda quantas casas quiser, em linha reta.' },
   { nome: 'Peão', pos: [3, 2], anda: [[2, 2], [1, 2]], captura: [[2, 1], [2, 3]],
-    texto: 'Anda uma casa pra frente (duas na primeira jogada) e captura na diagonal (×). Chegou do outro lado? Vira dama.' },
+    texto: 'Anda uma casa pra frente (duas na primeira jogada) e captura na diagonal (×). Chegou do outro lado? Vira a peça que você quiser.' },
 ];
 
 function Tabuleirinho({ glifo, mov }) {
@@ -55,9 +55,9 @@ export default function App() {
   const regras = [
     ['♟', <><b>Capturou? Bebeu.</b> Quem captura uma peça do adversário bebe o copinho dela. Sempre.</>],
     ['♜', 'Cada peça é um copinho de 10 ml com a bebida do cardápio da noite.'],
-    ['♛', 'Peão que chega do outro lado vira dama e troca de copinho: sai o do peão, entra o da dama.'],
+    ['♛', 'Peão que chega do outro lado vira a peça que você quiser, e o copinho troca junto. Dá pra escolher pelo gosto da bebida.'],
     ['♝', 'Relógio de 10 minutos pra cada um. Zerou o seu, perdeu.'],
-    ['♚', `Xeque-mate vence a partida. ${premio}`],
+    ['♚', `Xeque-mate vence a partida, e quem deu o mate bebe o rei do adversário. ${premio}`],
     ['♞', 'Empate ou desistência anula a partida. Não conta no placar.'],
     ['♟', 'Em dupla, é amigo contra amigo. Solo, é desafio aberto: a equipe junta você com outra pessoa.'],
     ['♜', 'Não bebe álcool? Dá pra jogar com outra bebida. Combina com a equipe antes de sentar.'],
